@@ -10,5 +10,5 @@ package serial;
  * @param <T>
  */
 public interface SerialDataHandler<T> {
-    void onDataRecive(T data);
+    void onDataReceived(T data);
 }

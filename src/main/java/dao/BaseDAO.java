@@ -1,4 +1,4 @@
-package com.sakti;
+package dao;
 
 import java.util.List;
 import org.bson.conversions.Bson;
