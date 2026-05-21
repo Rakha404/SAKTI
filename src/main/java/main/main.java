@@ -66,13 +66,18 @@ public class main extends javax.swing.JFrame {
         });
         jPanel1.add(adminpage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 71));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Karyawan");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 77, 200, 71));
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Riwayat ");
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 154, 200, 71));
 
-        jButton3.setText("jButton3");
+        jButton3.setText("Tentang");
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 231, 200, 71));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -94,6 +99,10 @@ public class main extends javax.swing.JFrame {
         admin.setVisible(true); 
         admin.setExtendedState(Frame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_adminpageActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
             new main().setVisible(true);
