@@ -98,7 +98,7 @@ public class karyawanservices {
                 // Membuat panel 'Card' (box orange) untuk 1 karyawan
                 // Layout 4 baris 1 kolom agar kolor berisi Nama,ID, Departemen, panel control 
                 JPanel cardPanel = new JPanel(new GridLayout(4, 1, 0, 0));
-                cardPanel.setBackground(new Color(237, 125, 49)); // Warna background orange
+                cardPanel.setBackground(new Color(96, 165, 250)); // Warna background orange
 
                 // Memberikan garis tepi tipis membulat (rounded) dan padding/jarak ke dalam
                 cardPanel.setBorder(BorderFactory.createCompoundBorder(
