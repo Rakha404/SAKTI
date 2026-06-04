@@ -4,7 +4,7 @@
  */
 package services;
 
-import pages.admin;
+import panel.karyawanpanel;
 import dao.GenericDAO;
 import objects.Karyawan;
 import com.mongodb.client.model.Filters;
@@ -129,14 +129,14 @@ public class karyawanservices {
                 tombolEdit.setBackground(Color.ORANGE);
                 tombolEdit.setCursor(new Cursor(Cursor.HAND_CURSOR));
                 tombolEdit.addActionListener((ActionEvent e) -> {
-                    admin.txtUID.setText(k.getUidRfid());
-                    admin.txtIDKry.setText(k.getIdKaryawan());
-                    admin.txtNama.setText(k.getNamaLengkap()); 
-                    admin.txtNama.setEnabled(true);
-                    admin.txtDiv.setSelectedItem(k.getDivisi());
-                    admin.txtJbt.setSelectedItem(k.getJabatan());
-                    admin.btnUpdate.setEnabled(true);
-                    admin.btnSave.setEnabled(false); 
+                    karyawanpanel.txtUID.setText(k.getUidRfid());
+                    karyawanpanel.txtIDKry.setText(k.getIdKaryawan());
+                    karyawanpanel.txtNama.setText(k.getNamaLengkap()); 
+                    karyawanpanel.txtNama.setEnabled(true);
+                    karyawanpanel.txtDiv.setSelectedItem(k.getDivisi());
+                    karyawanpanel.txtJbt.setSelectedItem(k.getJabatan());
+                    karyawanpanel.btnUpdate.setEnabled(true);
+                    karyawanpanel.btnSave.setEnabled(false); 
                 });
                 JButton tombolDelete = new JButton("Delete");
                 tombolDelete.setBackground(Color.RED);
@@ -220,7 +220,7 @@ public class karyawanservices {
         Karyawan k = DAO.findOne(filter);
         if (k != null) {
             DAO.update(filter, newK);
-            admin.showData("");
+            karyawanpanel.showData("");
             JOptionPane.showMessageDialog(null, "Data berhasil diperbarui!");
         }
     }
@@ -233,7 +233,7 @@ public class karyawanservices {
     public void hapusKaryawan(String idK) {
         Bson filter = Filters.eq("idKaryawan", idK);
         DAO.delete(filter); // Menggunakan deleteOne [6]
-        admin.showData("");
+        karyawanpanel.showData("");
         JOptionPane.showMessageDialog(null, "Data karyawan berhasil dihapus.");
     }
 }
