@@ -4,8 +4,9 @@
  */
 package pages;
 
-import services.karyawanservices;
-import objects.Karyawan;
+import services.serialservices;
+import java.awt.Frame;
+import panel.karyawanpanel;
 
 /**
  *
@@ -14,13 +15,28 @@ import objects.Karyawan;
 public class admin extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdminPage
+     * Creates new form MainApp
      */
     public admin() {
+
         initComponents();
-        
-        showData(""); //tampilkan seluruh data karyawan    
-        
+
+        // 1. Koneksi sekali saja saat aplikasi start
+        serialservices.getInstance().connect("COM3", 9600);
+
+        // 2. Tambahkan Global Observer (misal untuk Logging)
+        serialservices.getInstance().addHandler(tagId -> {
+            System.out.println("Global Log: Kartu " + tagId + " terdeteksi.");
+            // Jalankan fungsi database di sini
+        });
+
+        // 3. Contoh update UI di MainFrame
+        serialservices.getInstance().addHandler(tagId -> {
+            javax.swing.SwingUtilities.invokeLater(() -> {
+                //lblStatus.setText("User Terakhir: " + tagId);
+            });
+        });
+
     }
 
     /**
@@ -32,256 +48,71 @@ public class admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtUID = new javax.swing.JTextField();
-        txtIDKry = new javax.swing.JTextField();
-        txtNama = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        btnSave = new javax.swing.JButton();
-        btnRefresh = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        txtCari = new javax.swing.JTextField();
-        txtJbt = new javax.swing.JComboBox<>();
-        txtDiv = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
+        adminpage = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("UID");
-
-        jLabel2.setText("ID KARYAWAN");
-
-        jLabel3.setText("NAMA LENGKAP");
-
-        txtIDKry.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDKryActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("DIVISI");
-
-        jLabel5.setText("JABATAN");
-
-        btnSave.setBackground(new java.awt.Color(51, 51, 255));
-        btnSave.setForeground(new java.awt.Color(255, 255, 255));
-        btnSave.setText("SAVE");
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
-
-        btnRefresh.setBackground(new java.awt.Color(0, 204, 51));
-        btnRefresh.setForeground(new java.awt.Color(255, 255, 255));
-        btnRefresh.setText("REFRESH");
-        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setBackground(new java.awt.Color(255, 51, 51));
-        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate.setText("UPDATE");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        txtCari.setText("Search");
-        txtCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCariActionPerformed(evt);
-            }
-        });
-
-        txtJbt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Intern / Magang", "Staff", "Senior Staff / Specialist", "Supervisor / Team Leader", "Assistant Manager", "Manager", "Senior Manager", "General Manager", "Director", "C-Level Executive" }));
-        txtJbt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtJbtActionPerformed(evt);
-            }
-        });
-
-        txtDiv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HR Staff", "HR Admin", "Recruitment / Talent Acquisition", "HRD Supervisor", "HR Manager", "People Development", "Training Specialist", " " }));
-
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        adminpage.setText("Admin Page");
+        adminpage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminpageActionPerformed(evt);
+            }
+        });
+        jPanel1.add(adminpage, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 71));
+
+        jButton1.setText("Karyawan");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 77, 200, 71));
+
+        jButton2.setText("Riwayat ");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 154, 200, 71));
+
+        jButton3.setText("Tentang");
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 231, 200, 71));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtIDKry)
-                    .addComponent(txtNama)
-                    .addComponent(txtUID, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtJbt, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDiv, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(30, 30, 30)
-                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(btnSave)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRefresh)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnUpdate)))
-                .addContainerGap(35, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtUID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDiv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtIDKry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtJbt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnRefresh)
-                        .addComponent(btnUpdate))
-                    .addComponent(btnSave))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtIDKryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDKryActionPerformed
+    private void adminpageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminpageActionPerformed
+        karyawanpanel admin = new karyawanpanel();
+        admin.setVisible(true); 
+        admin.setExtendedState(Frame.MAXIMIZED_BOTH);
+    }//GEN-LAST:event_adminpageActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDKryActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-    try {
-        // 1. Validasi Input Kosong (mencegah data null masuk ke DB)
-        if (txtUID.getText().trim().isEmpty() || txtIDKry.getText().trim().isEmpty() || txtNama.getText().trim().isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Semua data (UID, ID, Nama) wajib diisi!", "Peringatan", javax.swing.JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        // 2. Bungkus data ke Objek Karyawan
-        Karyawan K = new Karyawan();
-        K.setUidRfid(txtUID.getText().trim());
-        K.setIdKaryawan(txtIDKry.getText().trim()); 
-        K.setNamaLengkap(txtNama.getText().trim());
-        K.setDivisi(txtDiv.getSelectedItem().toString()); 
-        K.setJabatan(txtJbt.getSelectedItem().toString()); 
-
-        // 3. Eksekusi ke database
-        karyawanservices service = new karyawanservices();
-        service.tambahKaryawan(K);
-        
-        // 4. Beri notifikasi sukses dan refresh layar
-        javax.swing.JOptionPane.showMessageDialog(this, "Data karyawan berhasil disimpan!");
-        refresAll(); 
-        
-    } catch (Exception e) {
-        // Cetak ke terminal NetBeans
-        System.err.println("Gagal menyimpan data karyawan!");
-        e.printStackTrace(); 
-        
-        // Munculkan pop-up error ke user
-        javax.swing.JOptionPane.showMessageDialog(this, "Gagal Simpan: " + e.getMessage(), "Database Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-    }
-    }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void txtJbtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJbtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtJbtActionPerformed
-
-    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        refresAll();
-    }//GEN-LAST:event_btnRefreshActionPerformed
-
-    private void txtCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariActionPerformed
-        showData(txtCari.getText());
-    }//GEN-LAST:event_txtCariActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        Karyawan K = new Karyawan();
-        K.setUidRfid(txtUID.getText());
-        K.setIdKaryawan(txtIDKry.getText()); 
-        K.setNamaLengkap(txtNama.getText());
-        K.setDivisi(txtDiv.getSelectedItem().toString()); 
-        K.setJabatan(txtJbt.getSelectedItem().toString()); 
-        karyawanservices service = new karyawanservices();
-        service.updateKaryawan(K);
-        refresAll();
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    }//GEN-LAST:event_jButton1ActionPerformed
     public static void main(String args[]) {
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new admin().setVisible(true);
+            new karyawanpanel().setVisible(true);
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JButton btnRefresh;
-    public static javax.swing.JButton btnSave;
-    public static javax.swing.JButton btnUpdate;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    public static javax.swing.JPanel jPanel1;
-    public static javax.swing.JTextField txtCari;
-    public static javax.swing.JComboBox<String> txtDiv;
-    public static javax.swing.JTextField txtIDKry;
-    public static javax.swing.JComboBox<String> txtJbt;
-    public static javax.swing.JTextField txtNama;
-    public static javax.swing.JTextField txtUID;
+    private javax.swing.JButton adminpage;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-    public static void showData(String key) {
-        karyawanservices K = new karyawanservices();
-        K.tampilKaryawan(jPanel1, key);
-    }
-
-    private void refresAll() {
-        showData("");
-        txtUID.setText("");
-        txtIDKry.setText("");
-        txtNama.setText("");
-        txtDiv.setSelectedIndex(0); 
-        txtJbt.setSelectedIndex(0); 
-        btnUpdate.setEnabled(false); 
-        txtUID.requestFocus();
-    }
 }

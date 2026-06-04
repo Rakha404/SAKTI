@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package main;
+package pages;
 
 /**
  *
  * @author galuh
  */
-public class login extends javax.swing.JFrame {
+public class dashboard extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(login.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(dashboard.class.getName());
 
     /**
-     * Creates new form login
+     * Creates new form dashboard
      */
-    public login() {
+    public dashboard() {
         initComponents();
     }
 
@@ -66,7 +66,7 @@ public class login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new login().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new dashboard().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
