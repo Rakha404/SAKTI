@@ -7,23 +7,22 @@ package pages;
 import services.authservices;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
+import services.authservices;
 
 /**
  *
  * @author mnish
  */
 public class login extends javax.swing.JFrame {
-    
 
-    /**
-     * Creates new form LoginPage
-     */public login() {
-        this.setExtendedState(Frame.MAXIMIZED_BOTH); 
-        initComponents();       
+    public login() {
+        this.setExtendedState(Frame.MAXIMIZED_BOTH);
+        initComponents();
 
         txtUsername.requestFocus();
-        
-//        System.out.println(System.getProperty("KEY"));
+
+        services.authservices auth = new services.authservices();
+        auth.registerUser("Rakha Arya", "adminSakti", "passwordSakti123");
     }
 
     /**

@@ -8,7 +8,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>24</maven.compiler.release>
-        <exec.mainClass>com.mycompany.sakti.SAKTI</exec.mainClass>
+        <exec.mainClass>pages.login</exec.mainClass>
     </properties>
     <dependencies>
         <!-- Driver NoSQL MongoDB (Pertemuan 5) -->
@@ -35,4 +35,4 @@
             <version>RELEASE270</version>
         </dependency>
     </dependencies>
- </project>
+</project>
