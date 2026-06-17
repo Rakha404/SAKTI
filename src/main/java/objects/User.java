@@ -1,18 +1,20 @@
 package objects;
 
 import java.time.LocalDateTime;
+import org.bson.types.ObjectId; // Tambahkan import ini
 
 /**
- *
- * @author 
+ * @author mnish
  */
 public class User {
 
+    private ObjectId id; // Tambahkan field ID sebagai Primary Key MongoDB
     private String fullname;
     private String username;
     private String password; // Tersimpan dalam format Hash SHA-256
     private LocalDateTime lastLogin;
 
+    // 1. Wajib ada Constructor Kosong untuk MongoDB POJO Codec
     public User() {
     }
 
@@ -23,7 +25,16 @@ public class User {
         this.lastLogin = lastLogin;
     }
 
-    // Getter dan Setter untuk akses data secara enkapsulasi [1]
+    // Getter dan Setter untuk ID
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    // Getter dan Setter lama tetap dipertahankan
     public String getFullname() {
         return fullname;
     }
